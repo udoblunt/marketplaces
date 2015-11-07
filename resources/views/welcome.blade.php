@@ -38,7 +38,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Laravel 514</div>
+                <div class="title">Oscar is gay</div>
             </div>
         </div>
     </body>
