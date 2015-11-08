@@ -27,10 +27,10 @@ class CreateMarketsTable extends Migration
             $table->increments('id');
 
             $table->integer('market_id')->unsigned()->index();
-            $table->mediumText('market_id')->references('id')->on('markets')->onDelete('cascade');
+            $table->foreign('market_id')->references('id')->on('markets')->onDelete('cascade');
 
             $table->integer('user_id')->unsigned()->index();
-            $table->mediumText('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
