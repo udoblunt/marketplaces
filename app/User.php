@@ -41,4 +41,9 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->belongsToMany('App\Market');
     }
+
+	public function items()
+	{
+		return $this->hasMany('App\Item','user_id','id');
+	}
 }

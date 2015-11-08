@@ -15,7 +15,12 @@ class Market extends Model {
 	}
 
 	public function defaultAttributes()
-    {
-        return $this->hasMany('App\DefaultAttribute','id','id');
-    }
+	{
+		return $this->hasMany('App\DefaultAttribute','id','id');
+	}
+
+	public function items()
+	{
+		return $this->belongsToMany('App\Item');
+	}
 }
