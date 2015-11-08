@@ -25,6 +25,8 @@ class CreateMarketsTable extends Migration
 
         Schema::create('market_user', function (Blueprint $table) {
             $table->increments('id');
+            $table->boolean('subscription');
+            $table->boolean('management');
 
             $table->integer('market_id')->unsigned()->index();
             $table->foreign('market_id')->references('id')->on('markets')->onDelete('cascade');

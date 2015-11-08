@@ -13,4 +13,9 @@ class Market extends Model {
 	{
 		return $this->belongsToMany('App\User');
 	}
+
+	public function defaultAttributes()
+    {
+        return $this->hasMany('App\DefaultAttribute','id','id');
+    }
 }
