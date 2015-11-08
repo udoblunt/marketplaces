@@ -114,6 +114,7 @@ class MarketplacesAppSeeder extends Seeder {
             'description' => 'This is an add for a Trek Bike.',
 	    'price' => 500,
             'by_mail' => 0,
+            'views' => 10,
 	    'user_id' => $oscar->id
         ]);
 
@@ -123,6 +124,7 @@ class MarketplacesAppSeeder extends Seeder {
             'description' => 'This is an add for a Ferrari 3000.',
 	    'price' => 19999999,
             'by_mail' => 0,
+            'views' => 1000,
 	    'user_id' => $udo->id
         ]);
 
@@ -132,6 +134,7 @@ class MarketplacesAppSeeder extends Seeder {
             'description' => 'This is an add for a Brooks saddle.',
 	    'price' => 50,
             'by_mail' => 1,
+            'views' => 50,
 	    'user_id' => $oscar->id
         ]);
 
