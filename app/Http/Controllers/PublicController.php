@@ -19,8 +19,11 @@ class PublicController extends Controller {
 	public function getIndex ()
 	{
 		$title = 'index';
-
 		$markets = Market::all();
+
+		foreach ($markets as $market) {
+		    $items[$market->id] = $market->items()->orderBy('views', 'desc')->take(5)->get();
+		}
 
 		return view('public.home', compact('title', 'items', 'markets'));
 	}

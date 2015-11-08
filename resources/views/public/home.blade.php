@@ -23,9 +23,9 @@
 			<div class="market">
 				<h1><a class="pull-left" href="{{ url('/', [$market->name]) }}">{{ $market->name }}</a></h1>
 				<p>{{ $market->description }}</p>
-				<p><a class="pull-left" href="#">top item 1</a></p>
-				<p><a class="pull-left" href="#">top item 2</a></p>
-				<p><a class="pull-left" href="#">top item 3</a></p>
+				@foreach ($items[$market->id] as $item)
+					<p><a class="pull-left" href="#">{{ $item->name }}</a></p>
+				@endforeach
 			</div>
 		@endforeach
 	</div>

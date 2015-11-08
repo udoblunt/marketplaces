@@ -138,6 +138,56 @@ class MarketplacesAppSeeder extends Seeder {
 	    'user_id' => $oscar->id
         ]);
 
+        $tire = Item::create([
+            'id' => 4,
+            'name' => 'Rubber tire',
+            'description' => 'This is an add for a rubber tire.',
+	    'price' => 10,
+            'by_mail' => 1,
+            'views' => 20,
+	    'user_id' => $oscar->id
+        ]);
+
+        $toyota = Item::create([
+            'id' => 5,
+            'name' => 'Toyota Celica',
+            'description' => 'This is an add for a Japanse car.',
+	    'price' => 1500,
+            'by_mail' => 0,
+            'views' => 150,
+	    'user_id' => $udo->id
+        ]);
+
+        $chair = Item::create([
+            'id' => 6,
+            'name' => 'Two seat',
+            'description' => 'This is an add for a leather two seater.',
+	    'price' => 70,
+            'by_mail' => 0,
+            'views' => 35,
+	    'user_id' => $udo->id
+        ]);
+
+        $banana = Item::create([
+            'id' => 7,
+            'name' => 'Chiquita',
+            'description' => 'This is an add for a box of bananas.',
+	    'price' => 5,
+            'by_mail' => 1,
+            'views' => 6,
+	    'user_id' => $oscar->id
+        ]);
+
+        $armaniTable = Item::create([
+            'id' => 8,
+            'name' => 'Table',
+            'description' => 'This is an add for a Armani table.',
+	    'price' => 50,
+            'by_mail' => 1,
+            'views' => 50,
+	    'user_id' => $oscar->id
+        ]);
+
 	ItemAttribute::create([
 	    'id' => 1,
 	    'name' => 'Color',
@@ -159,6 +209,41 @@ class MarketplacesAppSeeder extends Seeder {
 	    'item_id' => $saddle->id
 	]);
 
+	ItemAttribute::create([
+	    'id' => 4,
+	    'name' => 'Color',
+	    'value' => 'green',
+	    'item_id' => $tire->id
+	]);
+
+	ItemAttribute::create([
+	    'id' => 5,
+	    'name' => 'Color',
+	    'value' => 'yellow',
+	    'item_id' => $toyota->id
+	]);
+
+	ItemAttribute::create([
+	    'id' => 6,
+	    'name' => 'Color',
+	    'value' => 'pink',
+	    'item_id' => $chair->id
+	]);
+
+	ItemAttribute::create([
+	    'id' => 7,
+	    'name' => 'Color',
+	    'value' => 'orange',
+	    'item_id' => $banana->id
+	]);
+
+	ItemAttribute::create([
+	    'id' => 8,
+	    'name' => 'Color',
+	    'value' => 'white',
+	    'item_id' => $armaniTable->id
+	]);
+
 	ItemPhoto::create([
 	   'id' => 1,
 	   'filename' => 'test.png',
@@ -177,6 +262,36 @@ class MarketplacesAppSeeder extends Seeder {
 	   'item_id' => $saddle->id
 	]);
 
+	ItemPhoto::create([
+	    'id' => 4,
+	    'filename' => 'test.png',
+	    'item_id' => $tire->id
+	]);
+
+	ItemPhoto::create([
+	    'id' => 5,
+	    'filename' => 'test.png',
+	    'item_id' => $toyota->id
+	]);
+
+	ItemPhoto::create([
+	    'id' => 6,
+	    'filename' => 'test.png',
+	    'item_id' => $chair->id
+	]);
+
+	ItemPhoto::create([
+	    'id' => 7,
+	    'filename' => 'test.png',
+	    'item_id' => $banana->id
+	]);
+
+	ItemPhoto::create([
+	    'id' => 8,
+	    'filename' => 'test.png',
+	    'item_id' => $armaniTable->id
+	]);
+
 
 	$bikes->users()->attach($oscar->id, array('subscription' => 1, 'management' => 1));
 	$cars->users()->attach($udo->id, array('subscription' => 1, 'management' => 1));
@@ -187,5 +302,10 @@ class MarketplacesAppSeeder extends Seeder {
 	$trek->markets()->attach($bikes->id);
 	$ferrari->markets()->attach($cars->id);
 	$saddle->markets()->attach($bikes->id);
+	$tire->markets()->attach($bikes->id);
+	$toyota->markets()->attach($cars->id);
+	$chair->markets()->attach($design->id);
+	$banana->markets()->attach($fruit->id);
+	$armaniTable->markets()->attach($design->id);
     }
 }
