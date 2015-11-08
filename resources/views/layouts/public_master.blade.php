@@ -18,8 +18,8 @@
 
                 <ul class="pull-right">
                     @section('sidebar')
-                        <li class="btn btnPrimary"><a class="white" href="{{ url('auth/login') }}">Log in</a></li>
-                        <li class="btn btnSuccess"><a class="white" href="{{ url('auth/register') }}">Register</a></li>
+                        <li class=""><a href="{{ url('auth/login') }}">Log in</a></li>
+                        <li class=""><a href="{{ url('auth/register') }}">Register</a></li>
                     @show                
                 </ul>
             </div>
