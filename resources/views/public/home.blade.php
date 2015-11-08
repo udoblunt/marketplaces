@@ -10,7 +10,9 @@
 @endsection
 
 @section('content')
-	@foreach ($items as $item)
-		{{ $item->price }}
+	<div style="background: red;">
+	@foreach ($markets as $market)
+		{{ $market->name }}
 	@endforeach
+	</div>
 @endsection

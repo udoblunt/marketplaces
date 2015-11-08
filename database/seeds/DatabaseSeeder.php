@@ -72,19 +72,19 @@ class MarketplacesAppSeeder extends Seeder {
             'description' => 'Market for cars.'
         ]);
 
-        Market::create([
+        $retro = Market::create([
             'id' => 3,
             'name' => 'Retro',
             'description' => 'Market for retro stuff.'
         ]);
 
-        Market::create([
+        $design = Market::create([
             'id' => 4,
             'name' => 'Designer furniture',
             'description' => 'Market for expensive sheeeeeet.'
         ]);
 
-        Market::create([
+        $fruit = Market::create([
             'id' => 5,
             'name' => 'Fruit',
             'description' => 'Market for fresh bananas.'
@@ -173,6 +173,13 @@ class MarketplacesAppSeeder extends Seeder {
 	   'filename' => 'test.png',
 	   'item_id' => $saddle->id
 	]);
+
+
+	$bikes->users()->attach($oscar->id, array('subscription' => 1, 'management' => 1));
+	$cars->users()->attach($udo->id, array('subscription' => 1, 'management' => 1));
+	$retro->users()->attach($oscar->id, array('subscription' => 1, 'management' => 0));
+	$design->users()->attach($oscar->id, array('subscription' => 1, 'management' => 1));
+	$fruit->users()->attach($udo->id, array('subscription' => 1, 'management' => 0));
 
 	$trek->markets()->attach($bikes->id);
 	$ferrari->markets()->attach($cars->id);
