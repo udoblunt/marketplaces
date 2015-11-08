@@ -63,31 +63,36 @@ class MarketplacesAppSeeder extends Seeder {
         $bikes = Market::create([
             'id' => 1,
             'name' => 'Bikes',
-            'description' => 'Market for bikes.'
+            'description' => 'Market for bikes.',
+            'upvote' => 500
         ]);
 
         $cars = Market::create([
             'id' => 2,
             'name' => 'Cars',
-            'description' => 'Market for cars.'
+            'description' => 'Market for cars.',
+            'upvote' => 69
         ]);
 
         $retro = Market::create([
             'id' => 3,
             'name' => 'Retro',
-            'description' => 'Market for retro stuff.'
+            'description' => 'Market for retro stuff.',
+            'upvote' => 234
         ]);
 
         $design = Market::create([
             'id' => 4,
             'name' => 'Designer furniture',
-            'description' => 'Market for expensive sheeeeeet.'
+            'description' => 'Market for expensive sheeeeeet.',
+            'upvote' => 432
         ]);
 
         $fruit = Market::create([
             'id' => 5,
             'name' => 'Fruit',
-            'description' => 'Market for fresh bananas.'
+            'description' => 'Market for fresh bananas.',
+            'upvote' => 350
         ]);
 
         DefaultAttribute::create([

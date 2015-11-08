@@ -19,7 +19,7 @@ class PublicController extends Controller {
 	public function getIndex ()
 	{
 		$title = 'index';
-		$markets = Market::all();	
+		$markets = Market::orderBy('upvote', 'desc')->get();
 
 		foreach ($markets as $market) {
 		      $items[$market->id] = $market->items()->orderBy('views', 'desc')->take(2)->get();			
