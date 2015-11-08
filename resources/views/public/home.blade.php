@@ -8,7 +8,7 @@
     @parent
 
 	    @foreach ($markets as $market)
-			<a class="pull-left" href="#">{{ $market->name }}</a>
+			<a class="pull-left" href="{{ url('/', [$market->name]) }}">{{ $market->name }}</a>
 		@endforeach
 @endsection
 
@@ -19,37 +19,14 @@
 
 @section('content')
 	<div class="marketsContainer">
-		<div class="market">
-			<h1>titel</h1>
-			<p>Description</p>
-		</div>
-		<div class="market">
-			<h1>titel</h1>
-			<p>Description</p>
-		</div>
-		<div class="market">
-			<h1>titel</h1>
-			<p>Description</p>
-		</div>
-		<div class="market">
-			<h1>titel</h1>
-			<p>Description</p>
-		</div>
-		<div class="market">
-			<h1>titel</h1>
-			<p>Description</p>
-		</div>
-		<div class="market">
-			<h1>titel</h1>
-			<p>Description</p>
-		</div>
-		<div class="market">
-			<h1>titel</h1>
-			<p>Description</p>
-		</div>
-		<div class="market">
-			<h1>titel</h1>
-			<p>Description</p>
-		</div>
+		@foreach ($markets as $market)
+			<div class="market">
+				<h1><a class="pull-left" href="{{ url('/', [$market->name]) }}">{{ $market->name }}</a></h1>
+				<p>{{ $market->description }}</p>
+				<p><a class="pull-left" href="#">top item 1</a></p>
+				<p><a class="pull-left" href="#">top item 2</a></p>
+				<p><a class="pull-left" href="#">top item 3</a></p>
+			</div>
+		@endforeach
 	</div>
 @endsection
