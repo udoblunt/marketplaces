@@ -18,4 +18,14 @@ class Item extends Model {
 	{
 		return $this->belongsToMany('App\Market');
 	}
+
+	public function itemAttributes()
+	{
+		return $this->hasMany('App\ItemAttribute','id','id');
+	}
+
+	public function itemPhotos()
+	{
+		return $this->hasMany('App\ItemPhoto','id','id');
+	}
 }
