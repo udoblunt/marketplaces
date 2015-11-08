@@ -21,11 +21,11 @@ class Item extends Model {
 
 	public function itemAttributes()
 	{
-		return $this->hasMany('App\ItemAttribute','id','id');
+		return $this->hasMany('App\ItemAttribute','item_id','id');
 	}
 
 	public function itemPhotos()
 	{
-		return $this->hasMany('App\ItemPhoto','id','id');
+		return $this->hasMany('App\ItemPhoto','item_id','id');
 	}
 }
