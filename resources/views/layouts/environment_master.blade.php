@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Marketplaces - @yield($title)</title>
+        <title>Marketplaces - @yield('title')</title>
         <link rel="stylesheet" type="text/css" href="{{ url('css/bootstrap.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ url('css/styles.css') }}">
         <link href='https://fonts.googleapis.com/css?family=Oswald:300,400,700' rel='stylesheet' type='text/css'>
@@ -18,7 +18,12 @@
 
                 <ul class="pull-right">
                     @section('sidebar')
-                        <li class=""><a href="{{ url('auth/logout') }}">Log out</a></li>
+			@if (!$loggedIn)
+		                <li class=""><a href="{{ url('auth/login') }}">Log in</a></li>
+		                <li class=""><a href="{{ url('auth/register') }}">Register</a></li>
+			@else
+				<li class=""><a href="{{ url('auth/logout') }}">Log out</a></li>
+			@endif
                     @show                
                 </ul>
             </div>

@@ -1,8 +1,16 @@
 <!-- resources/views/auth/register.blade.php -->
 
-@extends('layouts.public_master')
+@extends('layouts.environment_master')
 
 @section('title', 'Sign up')
+
+@section('marketplaces')
+    @parent
+
+	    @foreach ($markets as $market)
+			<a class="pull-left" href="{{ url('/m', [$market->name]) }}">{{ $market->name }}</a>
+		@endforeach
+@endsection
 
 @section('sidebar')
     @parent

@@ -14,7 +14,7 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->mediumText('description');
             $table->integer('price');
             $table->boolean('by_mail');

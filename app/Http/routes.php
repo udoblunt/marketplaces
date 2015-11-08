@@ -11,10 +11,8 @@
 |
 */
 
-Route::get('/', 'PublicController@getIndex');
-Route::get('/home', 'PublicController@getIndex');
-
-Route::get('dashboard', ['middleware' => 'auth', 'uses' => 'DashboardController@getIndex']);
+Route::get('/', 'EnvironmentController@getIndex');
+Route::get('/home', 'EnvironmentController@getIndex');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
@@ -24,3 +22,7 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 // Registration routes...
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
+
+Route::get('/m/{market}', 'EnvironmentController@getMarket');
+
+Route::get('/m/{market}/{item}', 'EnvironmentController@getItem');
