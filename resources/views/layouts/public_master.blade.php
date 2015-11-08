@@ -11,7 +11,8 @@
     <body>
         <div class="nav">
             <div class="container">
-                <a class="pull-left" href="{{ url('home') }}"><img src="{{ url('images/logo.jpg') }}"></a>
+                <a class="pull-left" href="{{ url('home') }}">Marketplaces</a>
+
                 <ul class="pull-right">
                     @section('sidebar')
                         <li class="btn btnPrimary"><a class="white" href="{{ url('auth/login') }}">Log in</a></li>
