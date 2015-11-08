@@ -14,6 +14,8 @@
 Route::get('/', 'PublicController@getIndex');
 Route::get('/home', 'PublicController@getIndex');
 
+Route::get('dashboard', ['middleware' => 'auth', 'uses' => 'DashboardController@getIndex']);
+
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');

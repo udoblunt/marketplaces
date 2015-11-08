@@ -15,13 +15,13 @@ use App\Market;
 use Auth;
 use Validator, Input, Redirect;
 
-class PublicController extends Controller {
+class DashboardController extends Controller {
 	public function getIndex ()
 	{
-		$title = 'index';
+		$title = 'dashboard';
 
 		$markets = Market::all();
 
-		return view('public.home', compact('title', 'items', 'markets'));
+		return view('dashboard.home', compact('title', 'markets'));
 	}
 }
