@@ -29,3 +29,7 @@ div.nav ul li {
 	display: inline-block;
 	margin-left: 24px;
 }
+
+div.marketsContainer {
+	width: 80%;
+}

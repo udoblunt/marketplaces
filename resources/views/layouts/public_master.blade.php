@@ -11,7 +11,10 @@
     <body>
         <div class="nav">
             <div class="container">
-                <a class="pull-left" href="{{ url('home') }}">Marketplaces</a>
+                <a class="pull-left" href="{{ url('home') }}">Marketplaces |</a>
+                @section('marketplaces')
+
+                @show
 
                 <ul class="pull-right">
                     @section('sidebar')
