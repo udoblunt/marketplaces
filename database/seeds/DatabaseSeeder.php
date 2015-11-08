@@ -246,49 +246,49 @@ class MarketplacesAppSeeder extends Seeder {
 
 	ItemPhoto::create([
 	   'id' => 1,
-	   'filename' => 'test.png',
+	   'filename' => 'no_image.png',
 	   'item_id' => $trek->id
 	]);
 
 	ItemPhoto::create([
 	   'id' => 2,
-	   'filename' => 'test.png',
+	   'filename' => 'no_image.png',
 	   'item_id' => $ferrari->id
 	]);
 
 	ItemPhoto::create([
 	   'id' => 3,
-	   'filename' => 'test.png',
+	   'filename' => 'no_image.png',
 	   'item_id' => $saddle->id
 	]);
 
 	ItemPhoto::create([
 	    'id' => 4,
-	    'filename' => 'test.png',
+	    'filename' => 'no_image.png',
 	    'item_id' => $tire->id
 	]);
 
 	ItemPhoto::create([
 	    'id' => 5,
-	    'filename' => 'test.png',
+	    'filename' => 'no_image.png',
 	    'item_id' => $toyota->id
 	]);
 
 	ItemPhoto::create([
 	    'id' => 6,
-	    'filename' => 'test.png',
+	    'filename' => 'no_image.png',
 	    'item_id' => $chair->id
 	]);
 
 	ItemPhoto::create([
 	    'id' => 7,
-	    'filename' => 'test.png',
+	    'filename' => 'no_image.png',
 	    'item_id' => $banana->id
 	]);
 
 	ItemPhoto::create([
 	    'id' => 8,
-	    'filename' => 'test.png',
+	    'filename' => 'no_image.png',
 	    'item_id' => $armaniTable->id
 	]);
 

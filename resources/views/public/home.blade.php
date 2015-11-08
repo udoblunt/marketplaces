@@ -21,6 +21,7 @@
 	<div class="marketsContainer">
 		@foreach ($markets as $market)
 			<div class="market">
+				<h5>{{ $market->upvote }}</h5>
 				<h1><a class="pull-left" href="{{ url('/', [$market->name]) }}">{{ $market->name }}</a></h1>
 				<p>{{ $market->description }}</p>
 				@foreach ($items[$market->id] as $item)
