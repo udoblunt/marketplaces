@@ -26,6 +26,8 @@ Route::get('/m/{market}', 'EnvironmentController@getMarket');
 
 Route::get('/m/{market}/{item}', 'EnvironmentController@getItem');
 
-// Market routes...
+// Control routes...
 Route::get('/ctrl/m/add', 'MarketController@getAddMarket');
 Route::post('/ctrl/m/add', 'MarketController@postAddMarket');
+
+Route::get('/ctrl/m/vote/{market}/{math}', 'EnvironmentController@getMarketVote');

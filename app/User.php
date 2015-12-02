@@ -50,8 +50,8 @@ class User extends Model implements AuthenticatableContract,
 		return $this->hasMany('App\Item','user_id','id');
 	}
 
-    public function marketUpvotes()
+    public function marketVotes()
     {
-        return $this->hasMany('App\MarketUpvote','user_id','id');
+        return $this->hasMany('App\MarketVote','user_id','id');
     }
 }

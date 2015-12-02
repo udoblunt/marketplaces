@@ -25,4 +25,9 @@ class Market extends Model {
 	{
 		return $this->belongsToMany('App\Item');
 	}
+        
+        public function marketVotes()
+        {
+            return $this->hasMany('App\MarketVote', 'market_id', 'id');
+        }
 }
