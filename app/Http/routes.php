@@ -12,7 +12,6 @@
 */
 
 Route::get('/', 'EnvironmentController@getIndex');
-Route::get('/home', 'EnvironmentController@getIndex');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
@@ -26,3 +25,7 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::get('/m/{market}', 'EnvironmentController@getMarket');
 
 Route::get('/m/{market}/{item}', 'EnvironmentController@getItem');
+
+// Market routes...
+Route::get('/m/add', 'MarketController@getAddMarket');
+Route::post('/m/add', 'MarketController@postAddMarket');
