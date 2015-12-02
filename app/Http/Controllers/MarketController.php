@@ -54,15 +54,23 @@ class MarketController extends Controller {
         
         public function postAddMarket(Request $request)
         {
-            //Validate input
-            
+            //Validate market name|description input
+            $this->validate($request, [
+                'name' => 'required|string|min:4|max:30',
+                'description' => 'required|string|min:10|max:255'
+            ]);
             //Add market
-            
+            $newMarket = Market::create([
+                'name' => $request['name'],
+                'description' => $request['description']
+            ]);
             //Attach the market to the user
-            
+            $newMarket->users()->attach(Auth::user()->id);
+            //Validate market's default attributes
+            //echo '<pre>';;echo '</pre>';
             //Add market's default attributes
             
             //If all goes successfull redirect to the newly created market
-            return redirect('/m/' . $marketID);
+            //return redirect('/m/' . $marketID);
         }
 }

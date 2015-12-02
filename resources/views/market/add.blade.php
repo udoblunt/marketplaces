@@ -20,7 +20,7 @@
 @section('content')
 	<h1>Add a new market</h1>
 	
-        <form id="addMarket" method="post" action="{{ url('/m/add') }}"> <!-- addMarket Form -->
+        <form id="addMarket" method="post" action="{{ url('ctrl/m/add') }}"> <!-- addMarket Form -->
             
             {!! csrf_field() !!}
             
@@ -39,6 +39,10 @@
                 <input form="addMarket" name="defaultAttributeName2" placeholder="Name of your attribute, e.g. Color">
                 <input form="addMarket" name="defaultAttributeName3" placeholder="Name of your attribute, e.g. Type">
             </div> <!-- /defaultAttributes Div -->
+            
+            <div>
+                <button form="addMarket" type="submit">Save</button>
+            </div>
             
         </form> <!-- /addMarket Form -->
         
