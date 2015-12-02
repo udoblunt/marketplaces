@@ -17,52 +17,64 @@ use Validator, Input, Redirect;
 
 class MarketController extends Controller {
 	
-	public function __construct()
-    	{
-        	
-    	}
-        
-        /*
-         * NEEDS TO BE UPDATED
-         */
-	/*public function getMarket($market)
-	{
-		$loggedIn = $this->loggedIn;
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
-		$title = $market;
+    /*
+     * NEEDS TO BE UPDATED
+     */
+    /*public function getMarket($market)
+    {
+            $loggedIn = $this->loggedIn;
 
-		$markets = Market::orderBy('upvote', 'desc')->get();
+            $title = $market;
 
-		$detailMarket = Market::where('name', $market)->first();
+            $markets = Market::orderBy('upvote', 'desc')->get();
 
-		$items = $detailMarket->items()->orderBy('views', 'desc')->get();
+            $detailMarket = Market::where('name', $market)->first();
 
-		foreach ($items as $item) {
-			$users[$item->id] = $item->user;
-		}
+            $items = $detailMarket->items()->orderBy('views', 'desc')->get();
 
-		return view('environment.market', compact('title', 'items', 'detailMarket', 'markets', 'users', 'loggedIn'));
-	}*/
-        
-        public function getAddMarket()
-        {
-            //Set <title>
-            $title = 'Add market';
-            //Return view market/add
-            return view('market.add', compact('title'));
-        }
-        
-        public function postAddMarket(Request $request)
-        {
-            //Validate input
-            
-            //Add market
-            
-            //Attach the market to the user
-            
-            //Add market's default attributes
-            
-            //If all goes successfull redirect to the newly created market
-            return redirect('/m/' . $marketID);
-        }
+            foreach ($items as $item) {
+                    $users[$item->id] = $item->user;
+            }
+
+            return view('environment.market', compact('title', 'items', 'detailMarket', 'markets', 'users', 'loggedIn'));
+    }*/
+
+    public function getAddMarket()
+    {
+        //Set <title>
+        $title = 'Add market';
+        //Set Auth::check()
+        $loggedIn = $this->loggedIn;
+        //Get the markets for the nav
+        $markets = $this->markets;
+        //Return view market/add
+        return view('market.add', compact('title', 'loggedIn', 'markets'));
+    }
+
+    public function postAddMarket(Request $request)
+    {
+        //Validate market name|description input
+        $this->validate($request, [
+            'name' => 'required|string|min:4|max:30',
+            'description' => 'required|string|min:10|max:255'
+        ]);
+        //Add market
+        $newMarket = Market::create([
+            'name' => $request['name'],
+            'description' => $request['description']
+        ]);
+        //Attach the market to the user
+        $newMarket->users()->attach(Auth::user()->id);
+        //Validate market's default attributes
+        //echo '<pre>';;echo '</pre>';
+        //Add market's default attributes
+
+        //If all goes successfull redirect to the newly created market
+        //return redirect('/m/' . $marketID);
+    }
 }

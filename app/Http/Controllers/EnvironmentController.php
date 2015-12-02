@@ -16,16 +16,10 @@ use Auth;
 use Validator, Input, Redirect;
 
 class EnvironmentController extends Controller {
-
-	protected $loggedIn = false;
-	protected $markets;
 	
-	public function __construct()
-	{
-    	$this->loggedIn = Auth::check();
-    	$this->markets = Market::orderBy('upvote', 'desc')->get();
-
-	}
+	public function __construct() {
+            parent::__construct();
+        }
 
 	public function getIndex ()
 	{
