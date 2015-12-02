@@ -4,31 +4,33 @@
 	
 @section('title', $title)
 
-@section('marketplaces')
-    @parent
-
-	    @foreach ($markets as $market)
-			<a class="pull-left" href="{{ url('/m', [$market->name]) }}">{{ $market->name }}</a>
-		@endforeach
-@endsection
-
-@section('sidebar')
-    @parent
-    
-@endsection
-
 @section('content')
 	<div class="marketsContainer">
 		@foreach ($markets as $market)
 			<div class="market">
-				<h5>{{ $market->upvote }}</h5>
-				<h1><a class="pull-left" href="{{ url('/m', [$market->name]) }}">{{ $market->name }}</a></h1>
-				<p>{{ $market->description }}</p>
-				@foreach ($items[$market->id] as $item)
-					<p><a href="{{ url('/m', [$market->name, $item->name]) }}">{{ $item->name }}</a></p>
-					<p>{{ $item->price }} euro</p>
-					<p><small>Created by <a href="#">{{ $users[$item->id]->firstname }}</a></small></p>
-				@endforeach
+				<div class="upvote">
+					<a class="up" href="{{ url('/ctrl/m/upvote', [$market->id])}}">up</a>
+					<h5>{{ $market->upvote }}</h5>
+					<a class="down" href="{{ url('/ctrl/m/downvote', [$market->id])}}">down</a>
+				</div>
+				<div class="info">
+					<h1><a class="pull-left" href="{{ url('/m', [$market->name]) }}">{{ $market->name }}</a></h1>
+					<h2>{{ $market->description }}</h2>
+					<div class="items">
+						@foreach ($items[$market->id] as $item)
+							<div class="item">
+								<div class="head">
+									<h4><a href="{{ url('/m', [$market->name, $item->name]) }}">{{ $item->name }}</a></h5>
+									<h5><small>Created by <a href="#">{{ $users[$item->id]->first_name }}</a></small></h5>
+									<h5>{{ $item->price }} euro</h5>
+								</div>
+								<div class="description">
+									<p>{{ $item->description }}</p>
+								</div>
+							</div>
+						@endforeach
+					</div>
+				</div>
 			</div>
 		@endforeach
 	</div>
