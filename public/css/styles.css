@@ -32,6 +32,8 @@ div.nav ul li {
 
 div.marketsContainer {
 	width: 80%;
+	float: left;
+	display: inline-block;
 }
 
 div.marketsContainer div.market {
@@ -57,14 +59,14 @@ div.marketsContainer div.market div.upvote h5 {
 	text-align: center;
 	width: 70%;
 	border: 1px solid #CDCDCD;
-	margin: 0px 15% 0;
+	margin: 0px 15% 0 0;
 	padding: 36px 0px;
 }
 
 div.marketsContainer div.market div.upvote a {
 	position: absolute;
 	width: 100px;
-	left: calc(50% - 50px);
+	left: calc(36% - 50px);
 	text-align: center;
 	text-decoration: none;
 }
@@ -97,4 +99,13 @@ div.marketsContainer div.market div.info div.items div.item div {
 div.marketsContainer div.market div.info div.items div.item div.head * {
 	display: inline-block;
 	margin-right: 12px;
+}
+
+div.generalInfoContainer {
+	width: calc(20% - 74px);
+	padding: 12px 24px;
+	margin-left: 24px;
+	border: 1px solid #cdcdcd;
+	float: left;
+	display: inline-block;
 }

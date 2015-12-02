@@ -34,4 +34,11 @@
 			</div>
 		@endforeach
 	</div>
+	<div class="generalInfoContainer">
+		<h4>Marketplaces</h4>
+		<h5>How to in a nutshell</h5>
+		<p>Subsribe to markets that reflect your intrests to see items that matter to you.</p>
+		<p>Create a market if you cannot find the one you need. (Privilege for accounts older than 10 days)</p>
+		<p>Offer your items to specific markets to sell it quickly.</p>
+	</div>
 @endsection
