@@ -18,17 +18,21 @@ use Validator, Input, Redirect;
 class EnvironmentController extends Controller {
 
 	protected $loggedIn = false;
+	protected $markets;
 	
 	public function __construct()
 	{
     	$this->loggedIn = Auth::check();
+    	$this->markets = Market::orderBy('upvote', 'desc')->get();
+
 	}
 
 	public function getIndex ()
 	{
 		$loggedIn = $this->loggedIn;
 		$title = 'index';
-		$markets = Market::orderBy('upvote', 'desc')->get();
+
+		$markets = $this->markets;
 
 		foreach ($markets as $market) {
 		      $items[$market->id] = $market->items()->orderBy('views', 'desc')->take(2)->get();			
@@ -49,8 +53,6 @@ class EnvironmentController extends Controller {
 
 		$title = $market;
 
-		$markets = Market::orderBy('upvote', 'desc')->get();
-
 		$detailMarket = Market::where('name', $market)->first();
 
 		$items = $detailMarket->items()->orderBy('views', 'desc')->get();
@@ -58,6 +60,8 @@ class EnvironmentController extends Controller {
 		foreach ($items as $item) {
 			$users[$item->id] = $item->user;
 		}
+
+		$markets = $this->markets;
 
 		return view('environment.market', compact('title', 'items', 'detailMarket', 'markets', 'users', 'loggedIn'));
 	}
@@ -69,13 +73,12 @@ class EnvironmentController extends Controller {
 		$title = $market . ' - ' . $item;
 
 		$marketName = $market;
-
-		$markets = Market::orderBy('upvote', 'desc')->get();
 		
 		$item = Item::where('name', $item)->first();
 
 		$user = $item->user;
 
+		$markets = $this->markets;
 
 		return view('environment.item', compact('title', 'markets', 'item', 'user', 'marketName', 'loggedIn'));
 	}

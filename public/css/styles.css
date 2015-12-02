@@ -33,3 +33,68 @@ div.nav ul li {
 div.marketsContainer {
 	width: 80%;
 }
+
+div.marketsContainer div.market {
+	width: 100%;
+	margin-bottom: 24px;
+	padding-bottom: 24px;
+	border-bottom: 1px solid #cdcdcd;
+	display: inline-block;
+}
+
+div.marketsContainer div.market div {
+	display: inline-block;
+	float: left;
+	position: relative;
+}
+
+div.marketsContainer div.market div.upvote {
+	width: 10%;
+	margin-top: 24px;
+}
+
+div.marketsContainer div.market div.upvote h5 {
+	text-align: center;
+	width: 70%;
+	border: 1px solid #CDCDCD;
+	margin: 0px 15% 0;
+	padding: 36px 0px;
+}
+
+div.marketsContainer div.market div.upvote a {
+	position: absolute;
+	width: 100px;
+	left: calc(50% - 50px);
+	text-align: center;
+	text-decoration: none;
+}
+	
+div.marketsContainer div.market div.upvote a.up {
+	top: 6px;
+}	
+	
+div.marketsContainer div.market div.upvote a.down {
+	bottom: 6px;
+}		
+
+div.marketsContainer div.market div.info {
+	width: 90%;
+}
+
+div.marketsContainer div.market div.info div.items {
+	width: 100%;
+}
+
+div.marketsContainer div.market div.info div.items div.item {
+	width: 100%;
+	border-top: 1px solid #cdcdcd;
+}
+
+div.marketsContainer div.market div.info div.items div.item div {
+	width: 100%;
+}
+
+div.marketsContainer div.market div.info div.items div.item div.head * {
+	display: inline-block;
+	margin-right: 12px;
+}

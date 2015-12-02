@@ -4,19 +4,6 @@
 	
 @section('title', $title)
 
-@section('marketplaces')
-    @parent
-
-	    @foreach ($markets as $market)
-			<a class="pull-left" href="{{ url('/m', [$market->name]) }}">{{ $market->name }}</a>
-		@endforeach
-@endsection
-
-@section('sidebar')
-    @parent
-    
-@endsection
-
 @section('content')
 	<h1>{{ $detailMarket->name }}</h1>
 	<div class="marketsContainer">
