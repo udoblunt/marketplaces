@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use App\User;
 use App\Item;
 use App\Market;
+use App\MarketVote;
 
 use Auth;
 use Validator, Input, Redirect;
@@ -75,5 +76,39 @@ class EnvironmentController extends Controller {
 		$markets = $this->markets;
 
 		return view('environment.item', compact('title', 'markets', 'item', 'user', 'marketName', 'loggedIn'));
+	}
+
+	public function getMarketVote($market, $math)
+	{
+		$market = Market::where('name', $market)->first();
+		$user = Auth::user();
+
+		$userVotes = MarketVote::where('user_id', $user->id)->get();
+
+		if ($userVotes != null) {
+			foreach ($userVotes as $userVote) {
+				if ($userVote->market_id == $market->id) {
+					return back();
+				}
+			}
+		}
+
+		$vote = new MarketVote;
+
+		$vote->user()->associate($user);
+		$vote->market()->associate($market);
+
+		$vote->save();
+
+		if ($math == 'up') {
+			$market->upvote = $market->upvote + 1;
+		} else {
+			$market->upvote = $market->upvote - 1;
+		}
+		
+
+		$market->save();
+
+		return back();
 	}
 }

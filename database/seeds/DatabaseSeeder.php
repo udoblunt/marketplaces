@@ -71,7 +71,7 @@ class MarketplacesAppSeeder extends Seeder {
             'id' => 2,
             'name' => 'Cars',
             'description' => 'Market for cars.',
-            'upvote' => 69
+            'upvote' => 500
         ]);
 
         $retro = Market::create([
@@ -85,7 +85,7 @@ class MarketplacesAppSeeder extends Seeder {
             'id' => 4,
             'name' => 'Designer furniture',
             'description' => 'Market for expensive sheeeeeet.',
-            'upvote' => 432
+            'upvote' => 499
         ]);
 
         $fruit = Market::create([

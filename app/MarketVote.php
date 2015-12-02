@@ -5,9 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class MarketUpvote extends Model {
-	
-	use SoftDeletes;
+class MarketVote extends Model {
 	
 	public function user()
 	{

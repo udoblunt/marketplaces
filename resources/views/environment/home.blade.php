@@ -9,9 +9,9 @@
 		@foreach ($markets as $market)
 			<div class="market">
 				<div class="upvote">
-					<a class="up" href="{{ url('/ctrl/m/upvote', [$market->id])}}">up</a>
+					<a class="up" href="{{ url('/ctrl/m/vote', [$market->name, 'up'])}}">up</a>
 					<h5>{{ $market->upvote }}</h5>
-					<a class="down" href="{{ url('/ctrl/m/downvote', [$market->id])}}">down</a>
+					<a class="down" href="{{ url('/ctrl/m/vote', [$market->name, 'down'])}}">down</a>
 				</div>
 				<div class="info">
 					<h1><a class="pull-left" href="{{ url('/m', [$market->name]) }}">{{ $market->name }}</a></h1>

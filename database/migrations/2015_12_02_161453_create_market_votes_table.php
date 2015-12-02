@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMarketUpvotesTable extends Migration
+class CreateMarketVotesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateMarketUpvotesTable extends Migration
      */
     public function up()
     {
-        Schema::create('market_upvotes', function (Blueprint $table) {
+        Schema::create('market_votes', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('market_id')->unsigned();
@@ -30,6 +30,6 @@ class CreateMarketUpvotesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('market_upvotes');
+        Schema::drop('market_votes');
     }
 }
