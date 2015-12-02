@@ -4,6 +4,8 @@
 <html>
     <head>
         <title>Marketplaces - @yield('title')</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
         <link rel="stylesheet" type="text/css" href="{{ url('css/bootstrap.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ url('css/styles.css') }}">
         <link href='https://fonts.googleapis.com/css?family=Oswald:300,400,700' rel='stylesheet' type='text/css'>

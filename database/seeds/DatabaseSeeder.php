@@ -38,8 +38,8 @@ class MarketplacesAppSeeder extends Seeder {
 
         $oscar = User::create([
             'id' => 1,
-            'firstname' => 'Oscar',
-            'lastname' => 'van Ruiten',
+            'first_name' => 'Oscar',
+            'last_name' => 'van Ruiten',
             'email' => 'oscar@marketplace.com',
             'password' => bcrypt('secret'),
             'country' => 'The Netherlands',
@@ -48,10 +48,10 @@ class MarketplacesAppSeeder extends Seeder {
             'phone' => '0479671567'
         ]);
 
-	$udo = User::create([
+	   $udo = User::create([
             'id' => 2,
-            'firstname' => 'Steven',
-            'lastname' => 'Grauwmans',
+            'first_name' => 'Steven',
+            'last_name' => 'Grauwmans',
             'email' => 'steven@marketplace.com',
             'password' => bcrypt('secret'),
             'country' => 'Belgium',

@@ -29,9 +29,11 @@ class AuthController extends Controller
     */
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
-    protected $redirectPath = '/dashboard';
-    protected $redirectAfterLogout = '/home';
 
+    // Redirect after register & login
+    protected $redirectPath = '/';
+    // Original login path (redirect back with errors)
+    protected $loginPath = '/auth/login';
 
     /**
      * Create a new authentication controller instance.
@@ -56,6 +58,8 @@ class AuthController extends Controller
             'lastname' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
+            'longitude' => 'required',
+            'latitude' => 'required',
         ]);
     }
 
@@ -67,23 +71,28 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'firstname' => $data['firstname'],
-            'lastname' => $data['lastname'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'country' => $data['country'],
-            'state' => $data['state'],
-            'postal_code' => $data['postal_code'],
-            'phone' => $data['phone']
-        ]);
+        $user = new User;
+
+        $user->first_name = $data['firstname'];
+        $user->last_name = $data['lastname'];
+        $user->email = $data['email'];
+        $user->password = bcrypt($data['password']);  
+        $user->longitude = $data['longitude'];
+        $user->latitude = $data['latitude'];
+        $user->country = $data['country'];
+        $user->state = $data['state'];
+        $user->postal_code = $data['postal_code'];
+        $user->phone = $data['phone'];
+        $user->save();
+
+        return $user;
     }
 
     public function getLogin()
     {
         $loggedIn = false;
-	$title = 'index';
-	$markets = Market::orderBy('upvote', 'desc')->get();
+    	$title = 'index';
+    	$markets = Market::orderBy('upvote', 'desc')->get();
 
 
         return view('auth.login', compact('title', 'markets', 'loggedIn'));
@@ -92,8 +101,8 @@ class AuthController extends Controller
     public function postLogin(Request $request) 
     {
         $loggedIn = false;
-	$title = 'index';
-	$markets = Market::orderBy('upvote', 'desc')->get();
+    	$title = 'index';
+    	$markets = Market::orderBy('upvote', 'desc')->get();
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             return redirect('/');            
@@ -105,8 +114,8 @@ class AuthController extends Controller
     public function getRegister() 
     {
         $loggedIn = false;
-	$title = 'index';
-	$markets = Market::orderBy('upvote', 'desc')->get();
+    	$title = 'index';
+    	$markets = Market::orderBy('upvote', 'desc')->get();
 
         return view('auth.register', compact('title', 'markets', 'loggedIn'));    
     }

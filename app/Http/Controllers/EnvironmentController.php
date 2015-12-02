@@ -20,9 +20,9 @@ class EnvironmentController extends Controller {
 	protected $loggedIn = false;
 	
 	public function __construct()
-    	{
-        	$this->loggedIn = Auth::check();
-    	}
+	{
+    	$this->loggedIn = Auth::check();
+	}
 
 	public function getIndex ()
 	{
