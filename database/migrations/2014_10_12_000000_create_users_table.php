@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password', 60);
             $table->string('latitude');
             $table->string('longitude');
-            $table->integer('max_distance');
+            $table->integer('scope');
             $table->string('country');
             $table->string('state');
             $table->string('postal_code');
