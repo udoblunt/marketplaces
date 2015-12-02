@@ -25,6 +25,16 @@
             margin: 0px;
             padding: 0px
         }
+
+        label {
+            width: 262px;
+            display: inline-block;
+        }
+
+        input#search {
+            width: 495px;
+
+        }
     </style>
 
     <div>
@@ -36,12 +46,12 @@
 
             <div>
                 <label>Firstname</label>
-                <input type="text" name="firstname" value="{{ old('firstname') }}">
+                <input type="text" name="first_name" value="{{ old('first_name') }}">
             </div>
 
             <div>
                 <label>Lastname</label>
-                <input type="text" name="lastname" value="{{ old('lastname') }}">
+                <input type="text" name="last_name" value="{{ old('last_name') }}">
             </div>
 
             <div>
@@ -77,6 +87,11 @@
             <div>
                 <label>Phone</label>
                 <input type="text" name="phone" value="{{ old('phone') }}">
+            </div>
+
+            <div>
+                <label>Scope <small>This is the search area's diameter.</label>
+                <input type="text" name="scope" value="{{ old('scope') }}">
             </div>
 
             {!!Form::text('search',null,["id"=>"search", "placeholder"=>"Search your location here", "class"=>"location"])!!}
