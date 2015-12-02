@@ -21,7 +21,7 @@
             </div> <!-- /description Div -->
             
             <div id="inputContainer"> <!-- defaultAttributes Div -->
-                <input form="addMarket" name="defaultAttributeNames[1]" placeholder="Name of your attribute">
+                <input form="addMarket" type="text" name="defaultAttributeNames[1]" placeholder="Name of your attribute">
             </div> <!-- /defaultAttributes Div -->
             
             <div>
