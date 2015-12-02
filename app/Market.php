@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Market extends Model {
 	
 	use SoftDeletes;
+        
+        protected $fillable = ['name'];
 	
 	public function users()
 	{
@@ -23,9 +25,4 @@ class Market extends Model {
 	{
 		return $this->belongsToMany('App\Item');
 	}
-
-	public function marketUpvotes()
-    {
-        return $this->hasMany('App\MarketUpvote','market_id','id');
-    }
 }

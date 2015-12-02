@@ -14,7 +14,7 @@ class CreateMarketsTable extends Migration
     {
         Schema::create('markets', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->mediumText('description');
             $table->string('banner_filename');
             $table->string('logo_filename');

@@ -9,6 +9,8 @@ class DefaultAttribute extends Model {
 	
 	use SoftDeletes;
 	
+        protected $fillable = ['name', 'description'];
+        
 	public function market()
 	{
 		return $this->belongsTo('App\Market');

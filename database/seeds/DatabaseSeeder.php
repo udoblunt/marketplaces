@@ -57,7 +57,8 @@ class MarketplacesAppSeeder extends Seeder {
             'country' => 'Belgium',
             'state' => 'Antwerp',
             'postal_code' => '2323',
-            'phone' => '0479343719'
+            'phone' => '0479343719',
+            'created_at' => '2015-10-10'
         ]);  
 
         $bikes = Market::create([
