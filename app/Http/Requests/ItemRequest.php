@@ -23,18 +23,26 @@ class ItemRequest extends Request
      */
     public function rules()
     {
-        $rules = [
+        //Rules used by step one (atleast one market is required, this is checked in the ItemController)
+        if ($this->request->get('next')) $rules = [];
+        //Rules used by step two
+        if ($this->request->get('save'))
+        {
+            $rules = [
             'name' => 'required|string|min:4|max:30',
             'description' => 'required|string|min:10|max:255',
-            'by_mail' => 'required|boolean',
-        ];
-        
-        if (!empty($this->request->get('itemPhotos')))
-        {
-            foreach($this->request->get('itemPhotos') as $key => $val)
+            'price' => 'required|string',
+            ];
+            //Rules for the itemAttributes of the market the user is trying to add in
+            foreach($this->request->get('itemAttributes') as $key => $val)
             {
-                $rules['itemPhotos.'.$key] = 'image';
+                $rules['itemAttributes.'.$key] = 'required|string';
             }
+            
+            //Photos get validated in the ItemController cause of bad luck doing it here
+            //MUST STILL BE WRITTEN
+            
+            $rules = [];
         }
         
         return $rules;

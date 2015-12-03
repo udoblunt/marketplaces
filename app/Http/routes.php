@@ -27,7 +27,8 @@ Route::get('/m/{market}', 'EnvironmentController@getMarket');
 Route::get('/m/{market}/{item}', 'EnvironmentController@getItem');
 
 // Control routes...
-Route::get('/ctrl/m/add', 'MarketController@getAddMarket');
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/ctrl/m/add', 'MarketController@getAddMarket');
 Route::post('/ctrl/m/add', 'MarketController@postAddMarket');
 
 Route::get('/ctrl/i/add', 'ItemController@getAddItem');
@@ -36,3 +37,5 @@ Route::post('/ctrl/i/add', 'ItemController@postAddItem');
 Route::get('/ctrl/m/vote/{market}/{math}', 'EnvironmentController@getMarketVote');
 
 Route::get('/ctrl/m/subscription/{market}', 'EnvironmentController@getMarketSubscribe');
+
+});

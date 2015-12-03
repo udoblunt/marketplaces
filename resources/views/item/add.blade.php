@@ -11,6 +11,29 @@
             <form id="addItem" method="post" action="{{ url('ctrl/i/add') }}"> <!-- addItem Form -->
 
                 {!! csrf_field() !!}
+                
+                <div> <!-- markets div -->
+                    @foreach ($markets as $market)
+                        <label for="market{{ $market->id }}">{{ $market->name }}</label>
+                        <input form="addItem" type="checkbox" name="markets[{{ $market->id }}]">
+                    @endforeach
+                </div> <!-- /markets div -->
+
+                <div>
+                    <button form="addItem" name="next" value="1" type="submit">Next</button>
+                </div>
+
+                
+            </form> <!-- /addItem Form -->
+    @endsection
+@elseif ($step == 2)
+    @section('content')
+            <h1>Add a new item: Step 2</h1>
+
+            <form id="addItem" method="post" action="{{ url('ctrl/i/add') }}"> <!-- addItem Form -->
+
+                {!! csrf_field() !!}
+                
                 <div> <!-- name div -->
                     <label for="name">Name</label>
                     <input form="addItem" type="text" name="name" placeholder="Name of your item, e.g. Gazelle 6-speed" required="" value="{{ old('name') }}">
@@ -31,51 +54,44 @@
                     <input form="addItem" type="checkbox" name="by_mail">
                 </div>
                 
-                <div> <!-- markets div -->
-                    @foreach ($markets as $market)
-                        <label for="market{{ $market->id }}">{{ $market->name }}</label>
-                        <input form="addItem" type="checkbox" name="markets[{{ $market->id }}]">
-                    @endforeach
-                </div> <!-- /markets div -->
-
-                <div id="inputContainer"> <!-- item photos div -->
-                    
-                </div> <!-- /item photos Div -->
-                
                 <div>
                     <a onclick="addInput()">Add Photo</a>
                 </div>
                 
-                <div>
-                    <button form="addItem" name="next" type="submit">Next</button>
-                </div>
+                <div id="inputContainer"> <!-- item photos div -->
+                    <input form="addItem" type="file" name="itemPhotos[]" multiple="true">
+                </div> <!-- /item photos Div -->
+                
+                <div> <!-- defaultAttributes of selectedMarkets -->
+                    <h2>Default Attributes of your selected markets</h2>
+                    @foreach ($selectedMarkets as $market)
 
+                        <div>
+                            <h3>{{ $market->name }}</h3>
+                        @foreach ($market->defaultAttributes as $attribute)
+
+                            <div> <!-- defaultAttribute of one selectedMarket -->
+                                <label for="{{ $attribute->name }}">{{ $attribute->name }}</label>
+                                <input form="addItem" type="text" name="itemAttributes[{{ $attribute->name }}]" placeholder="">
+                            </div> <!-- /defaultAttribute of selectedMarket -->
+
+                        @endforeach
+                        </div>
+
+                    @endforeach
+                </div> <!-- /defaultAttributes of selectedMarkets -->
+                
+                <div>
+                    <button form="addItem" name="save" value="1" type="submit">Save</button>
+                </div>
+                
                 <script type="text/javascript">
                     $count = 1;
                     function addInput() {
-                        $('#inputContainer').append( $( '<input form="addItem" type="file" name="itemPhotos[' + $count + ']">' ) );
+                        $('#inputContainer').append( $( '<input form="addItem" type="file" multiple="true" name="itemPhotos[' + $count + ']">' ) );
                         $count++;
                     }
                 </script>
-            </form> <!-- /addItem Form -->
-    @endsection
-@elseif ($step == 2)
-    @section('content')
-            <h1>Add a new item: Step 2</h1>
-
-            <form id="addItem" method="post" action="{{ url('ctrl/i/add') }}"> <!-- addItem Form -->
-
-                {!! csrf_field() !!}
-                
-                @foreach ($selectedMarkets as $market)
-                    @foreach ($market->defaultAttributes as $attribute)
-                    <input form="addItem" type="text" name="{{ $attribute->name }}" placeholder="" value="{{ old() }}">
-                    @endforeach
-                @endforeach
-                
-                <div>
-                    <button form="addItem" name="save" type="submit">Save</button>
-                </div>
                 
             </form> <!-- /addItem Form -->
     @endsection
