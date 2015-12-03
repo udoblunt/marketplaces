@@ -23,9 +23,18 @@ class ItemRequest extends Request
      */
     public function rules()
     {
-        foreach($this->request->get('defaultAttributeNames') as $key => $val)
+        $rules = [
+            'name' => 'required|string|min:4|max:30',
+            'description' => 'required|string|min:10|max:255',
+            'by_mail' => 'required|boolean',
+        ];
+        
+        if (!empty($this->request->get('itemPhotos')))
         {
-            $rules['defaultAttributeNames.'.$key] = 'string|min:4|max:20';
+            foreach($this->request->get('itemPhotos') as $key => $val)
+            {
+                $rules['itemPhotos.'.$key] = 'image';
+            }
         }
         
         return $rules;

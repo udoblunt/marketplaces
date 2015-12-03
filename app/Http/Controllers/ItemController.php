@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Http\Requests\DefaultAttributeRequest;
+use App\Http\Requests\ItemRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -30,43 +31,44 @@ class ItemController extends Controller {
         $title = 'Add item';
         //Set Auth::check()
         $loggedIn = $this->loggedIn;
-        //Get the markets for the nav
+        //Get the markets for the nav and where to place item in
         $markets = $this->markets;
-        //Return view market/add
-        return view('item.add', compact('title', 'loggedIn', 'markets'));
+        
+        //$step, used to define what to show in the view
+        $step = 1;
+        
+        //Return view item/add
+        return view('item.add', compact('title', 'loggedIn', 'markets', 'step'));
     }
-
-    public function postAddItem(ItemRequest $request)
+    
+    public function postAddItem(Request $request)
     {
-        //Validate market name|description input
-        $this->validate($request, [
-            'name' => 'required|string|min:4|max:30',
-            'description' => 'required|string|min:10|max:255',
-        ]);
-
-        //Add market
-        $newMarket = new Market;
-        $newMarket->name = $request['name'];
-        $newMarket->description = $request['description'];
-        $newMarket->save();
+        if (isset($request->next)) return $this->postAddItemStepOne($request);
+        if (isset($request->save)) return $this->postAddItemStepTwo($request);
+    }
+    
+    private function postAddItemStepOne(Request $request)
+    {
+        $step = 2;
         
-        //Attach the market to the user
-        $newMarket->users()->attach(Auth::user()->id, array('subscription' => 1, 'management' => 1));
-        
-        //Add market's default attributes
-        foreach ($request->input('defaultAttributeNames') as $name => $value)
+        //Get all selected markets with the defaultAttributes
+        foreach ($request->input('markets') as $marketID => $boolean)
         {
-            if (!empty($value))
-            {
-                //Foreach attribute create record and associate to the market
-                $attribute = new DefaultAttribute;
-                $attribute->name = $value;
-                $attribute->market()->associate($newMarket->id);
-                $attribute->save();
-            }
+            if ($boolean) $selectedMarkets[] = Market::with('defaultAttributes')->where('id', $marketID)->get();
         }
         
-        //If all goes successfull redirect to the newly created market
-        return redirect('/m/' . $newMarket->name);
+        //Set <title>
+        $title = 'Add item';
+        //Set Auth::check()
+        $loggedIn = $this->loggedIn;
+        //Get the markets for the nav and where to place item in
+        $markets = $this->markets;
+        //Return view item/add
+        return view('item.add', compact('title', 'loggedIn', 'markets', 'step', 'selectedMarkets'));
+    }
+    
+    private function postAddItemStepTwo(ItemRequest $request)
+    {
+        
     }
 }
