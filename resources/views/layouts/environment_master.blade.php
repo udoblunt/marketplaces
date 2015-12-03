@@ -27,8 +27,10 @@
 		                <li class=""><a href="{{ url('auth/login') }}">Log in</a></li>
 		                <li class=""><a href="{{ url('auth/register') }}">Register</a></li>
 			@else
-                <li class=""><a href="{{ url('ctrl/m/add') }}">Create Market</a></li>
-                <li class=""><a href="{{ url('ctrl/m/add') }}">Manage Markets</a></li>
+                <li class=""><a href="{{ url('ctrl/i/add') }}">New Item</a></li>
+                <li class=""><a href="{{ url('ctrl/i/add') }}">My Items</a></li>
+                <li class=""><a href="{{ url('ctrl/m/add') }}">New Market</a></li>
+                <li class=""><a href="{{ url('ctrl/m/add') }}">My Markets</a></li>
 				<li class=""><a href="{{ url('auth/logout') }}">Log out</a></li>
 			@endif
                     @show                
