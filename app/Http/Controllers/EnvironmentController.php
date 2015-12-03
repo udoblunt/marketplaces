@@ -57,7 +57,7 @@ class EnvironmentController extends Controller {
 
 		$detailMarket = Market::where('name', $market)->first();
 
-		$userSubscriptions = Subscriber::where('user_id', Auth::user()->id)->get();
+		$userSubscription = Subscriber::where(array('user_id' => Auth::user()->id, 'market_id' => $detailMarket->id))->first();
 
 		$items = $detailMarket->items()->orderBy('views', 'desc')->get();
 
@@ -67,7 +67,7 @@ class EnvironmentController extends Controller {
 
 		$markets = $this->markets;
 
-		return view('environment.market', compact('title', 'items', 'detailMarket', 'markets', 'users', 'loggedIn', 'userSubscriptions'));
+		return view('environment.market', compact('title', 'items', 'detailMarket', 'markets', 'users', 'loggedIn', 'userSubscription'));
 	}
 
 	public function getItem($market, $item)

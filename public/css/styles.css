@@ -88,10 +88,14 @@ div.marketsContainer div.market div.info {
 	width: 90%;
 }
 
-div.marketsContainer div.market div.info a.subscribe {
+a.subscribe {
 	position: absolute;
 	top: 36px;
 	right: 0;
+}
+
+div.marketsContainer {
+	position: relative;
 }
 
 div.marketsContainer div.market div.info div.items {
