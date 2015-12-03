@@ -4,54 +4,79 @@
 	
 @section('title', $title)
 
-@section('content')
-	<h1>Add a new item</h1>
-	
-        <form id="addItem" method="post" action="{{ url('ctrl/i/add') }}"> <!-- addItem Form -->
-            
-            {!! csrf_field() !!}
-            <div> <!-- name div -->
-                <label for="name">Name</label>
-                <input form="addItem" type="text" name="name" placeholder="Name of your item, e.g. Gazelle 6-speed" required="" value="{{ old('name') }}">
-            </div> <!-- /name div -->
-            
-            <div> <!-- description div -->
-                <label for="description">Description</label>
-                <textarea form="addItem" name="description" cols="20" rows="10" placeholder="Add a description for your market, e.g. all sorts of bikes (including tricycle)" required="">{{ old('description') }}</textarea>
-            </div> <!-- /description div -->
-            
-            <div> <!-- price div -->
-                <label for="price">Price</label>
-                <input form="addItem" type="text" name="price" placeholder="45,76" value="{{ old('price') }}">
-            </div> <!-- /price div -->
-            
-            <div>
-                <label for="by_mail">Sendable by mail</label>
-                <input form="addItem" type="checkbox" name="by_mail">
-            </div>
-            
-            <div> <!-- itemAttributes div -->
-                <?php $i = 0 ?>
-                @foreach ($defaultAttributes as $defaultAttribute)
-                    <input form="addItem" type="text" name="itemAttributes[{{ $i }}]" placeholder=". . .">
-                    $i++;
+@if ($step == 1)
+    @section('content')
+            <h1>Add a new item: Step 1</h1>
+
+            <form id="addItem" method="post" action="{{ url('ctrl/i/add') }}"> <!-- addItem Form -->
+
+                {!! csrf_field() !!}
+                <div> <!-- name div -->
+                    <label for="name">Name</label>
+                    <input form="addItem" type="text" name="name" placeholder="Name of your item, e.g. Gazelle 6-speed" required="" value="{{ old('name') }}">
+                </div> <!-- /name div -->
+
+                <div> <!-- description div -->
+                    <label for="description">Description</label>
+                    <textarea form="addItem" name="description" cols="20" rows="10" placeholder="Add a description for your item, e.g. great 6-speed well maintained" required="">{{ old('description') }}</textarea>
+                </div> <!-- /description div -->
+
+                <div> <!-- price div -->
+                    <label for="price">Price</label>
+                    <input form="addItem" type="text" name="price" placeholder="45,76" value="{{ old('price') }}">
+                </div> <!-- /price div -->
+
+                <div>
+                    <label for="by_mail">Sendable by mail</label>
+                    <input form="addItem" type="checkbox" name="by_mail">
+                </div>
+                
+                <div> <!-- markets div -->
+                    @foreach ($markets as $market)
+                        <label for="market{{ $market->id }}">{{ $market->name }}</label>
+                        <input form="addItem" type="checkbox" name="markets[{{ $market->id }}]">
+                    @endforeach
+                </div> <!-- /markets div -->
+
+                <div id="inputContainer"> <!-- item photos div -->
+                    
+                </div> <!-- /item photos Div -->
+                
+                <div>
+                    <a onclick="addInput()">Add Photo</a>
+                </div>
+                
+                <div>
+                    <button form="addItem" name="next" type="submit">Next</button>
+                </div>
+
+                <script type="text/javascript">
+                    $count = 1;
+                    function addInput() {
+                        $('#inputContainer').append( $( '<input form="addItem" type="file" name="itemPhotos[' + $count + ']">' ) );
+                        $count++;
+                    }
+                </script>
+            </form> <!-- /addItem Form -->
+    @endsection
+@elseif ($step == 2)
+    @section('content')
+            <h1>Add a new item: Step 2</h1>
+
+            <form id="addItem" method="post" action="{{ url('ctrl/i/add') }}"> <!-- addItem Form -->
+
+                {!! csrf_field() !!}
+                
+                @foreach ($selectedMarkets as $market)
+                    @foreach ($market->defaultAttributes as $attribute)
+                    <input form="addItem" type="text" name="{{ $attribute->name }}" placeholder="" value="{{ old() }}">
+                    @endforeach
                 @endforeach
-            </div> <!-- /itemAttributes div -->
-            
-            <div>
-                <a onclick="addInput()">Add Attribute</a>
-            </div>
-            <div>
-                <button form="addItem" type="submit">Save</button>
-            </div>
-            
-            <script type="text/javascript">
-                $count = 2;
-                function addInput() {
-                    $('#inputContainer').append( $( '<input form="addItem" name="defaultAttributeNames[' + $count + ']" placeholder="Name of your attribute">' ) );
-                    $count++;
-                }
-            </script>
-        </form> <!-- /addItem Form -->
-        
-@endsection
+                
+                <div>
+                    <button form="addItem" name="save" type="submit">Save</button>
+                </div>
+                
+            </form> <!-- /addItem Form -->
+    @endsection
+@endif
