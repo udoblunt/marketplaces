@@ -11,9 +11,9 @@
 			@foreach ($userSubscriptions as $userSubscription)
 				<div class="market">
 					<div class="upvote">
-						<a class="up" href="{{ url('/ctrl/m/vote', [$userSubscription->name, 'up'])}}">up</a>
+						<a class="up" href="{{ url('/ctrl/m/vote', [$userSubscription->name, 'up'])}}">Up</a>
 						<h5>{{ $userSubscription->upvote }}</h5>
-						<a class="down" href="{{ url('/ctrl/m/vote', [$userSubscription->name, 'down'])}}">down</a>
+						<a class="down" href="{{ url('/ctrl/m/vote', [$userSubscription->name, 'down'])}}">Down</a>
 					</div>
 					<div class="info">
 						<h1><a class="pull-left" href="{{ url('/m', [$userSubscription->name]) }}">{{ $userSubscription->name }}</a></h1>
@@ -39,8 +39,35 @@
 
 		@else
 
-			<h1>No subscriptions yet!</h1>
+			<h1>No subscriptions yet! Here are some suggestions</h1>
 
+			@foreach ($markets as $market)
+				<div class="market">
+					<div class="upvote">
+						<a class="up" href="{{ url('/ctrl/m/vote', [$market->name, 'up'])}}">Up</a>
+						<h5>{{ $market->upvote }}</h5>
+						<a class="down" href="{{ url('/ctrl/m/vote', [$market->name, 'down'])}}">Down</a>
+					</div>
+					<div class="info">
+						<h1><a class="pull-left" href="{{ url('/m', [$market->name]) }}">{{ $market->name }}</a></h1>
+						<a class="subscribe" href="{{ url('/ctrl/m/subscription', [$market->name])}}">{{ (!empty($userSubscriptions) && $userSubscriptions[$market->id] != null) ? "Unsubscribe" : "Subscribe" }}</a>						<h2>{{ $market->description }}</h2>
+						<div class="items">
+							@foreach ($items[$market->id] as $item)
+								<div class="item">
+									<div class="head">
+										<h4><a href="{{ url('/m', [$market->name, $item->name]) }}">{{ $item->name }}</a></h5>
+										<h5><small>Created by <a href="#">{{ $users[$item->id]->first_name }}</a></small></h5>
+										<h5>{{ $item->price }} euro</h5>
+									</div>
+									<div class="description">
+										<p>{{ $item->description }}</p>
+									</div>
+								</div>
+							@endforeach
+						</div>
+					</div>
+				</div>
+			@endforeach
 		@endif 
 	</div>
 	<div class="generalInfoContainer">

@@ -29,11 +29,11 @@ class Market extends Model {
 
     public function subscribers()
     {
-        return $this->hasMany('App\Subscriber','user_id','id');
+        return $this->hasMany('App\Subscriber','market_id','id');
     }
 
     public function managers()
     {
-        return $this->hasMany('App\Manager','user_id','id');
+        return $this->hasMany('App\Manager','market_id','id');
     }
 }

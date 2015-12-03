@@ -13,8 +13,9 @@
     <body>
         <div class="nav">
             <div class="container">
-                <a class="pull-left" href="{{ url('/') }}">Marketplaces |</a>
+                <a class="pull-left" href="{{ url('/') }}">MARKETPLACES</a>
                 @section('marketplaces')
+                    <a style="font-weight: 700" class="pull-left" href="{{ url('/m/explore') }}"> Explore </a>
                     @foreach ($markets as $market)
                         <a class="pull-left" href="{{ url('/m', [$market->name]) }}">{{ $market->name }}</a>
                     @endforeach
