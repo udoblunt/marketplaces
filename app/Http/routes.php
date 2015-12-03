@@ -22,6 +22,7 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
+Route::get('/m/explore', 'EnvironmentController@getExplore');
 Route::get('/m/{market}', 'EnvironmentController@getMarket');
 
 Route::get('/m/{market}/{item}', 'EnvironmentController@getItem');

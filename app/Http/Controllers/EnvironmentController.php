@@ -33,7 +33,7 @@ class EnvironmentController extends Controller {
 		$subscriptions = Subscriber::where('user_id', Auth::user()->id)->get();
 
 		foreach ($subscriptions as $subscription) {
-			$userSubscriptions[] = Market::where('id', $subscription->market_id)->first();
+			$userSubscriptions[$subscription->market_id] = Market::where('id', $subscription->market_id)->first();
 		}
 		
 		foreach ($markets as $market) {
@@ -144,5 +144,31 @@ class EnvironmentController extends Controller {
 		}
 
 		return back();
+	}
+
+	public function getExplore() 
+	{
+		$loggedIn = $this->loggedIn;
+		$title = 'index';
+
+		$markets = $this->markets;
+
+		$subscriptions = Subscriber::where('user_id', Auth::user()->id)->get();
+
+		foreach ($subscriptions as $subscription) {
+			$userSubscriptions[$subscription->market_id] = Market::where('id', $subscription->market_id)->first();
+		}
+		
+		foreach ($markets as $market) {
+		      $items[$market->id] = $market->items()->orderBy('views', 'desc')->take(2)->get();			
+		}
+
+		foreach ($items as $itemsSet) {
+		      foreach ($itemsSet as $item) {
+		            $users[$item->id] = $item->user;
+		      }
+		}
+
+		return view('environment.explore', compact('title', 'items', 'markets', 'users', 'loggedIn', 'userSubscriptions'));
 	}
 }
