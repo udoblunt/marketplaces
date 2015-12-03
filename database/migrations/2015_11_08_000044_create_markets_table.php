@@ -22,18 +22,6 @@ class CreateMarketsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
-
-        Schema::create('market_user', function (Blueprint $table) {
-            $table->increments('id');
-            $table->boolean('subscription');
-            $table->boolean('management');
-
-            $table->integer('market_id')->unsigned()->index();
-            $table->foreign('market_id')->references('id')->on('markets')->onDelete('cascade');
-
-            $table->integer('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-        });
     }
 
     /**
@@ -43,7 +31,6 @@ class CreateMarketsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('market_user');
         Schema::drop('markets');
     }
 }

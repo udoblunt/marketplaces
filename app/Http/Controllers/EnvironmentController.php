@@ -12,6 +12,7 @@ use App\User;
 use App\Item;
 use App\Market;
 use App\MarketVote;
+use App\Subscriber;
 
 use Auth;
 use Validator, Input, Redirect;
@@ -29,6 +30,12 @@ class EnvironmentController extends Controller {
 
 		$markets = $this->markets;
 
+		$subscriptions = Subscriber::where('user_id', Auth::user()->id)->get();
+
+		foreach ($subscriptions as $subscription) {
+			$userSubscriptions[] = Market::where('id', $subscription->market_id)->first();
+		}
+		
 		foreach ($markets as $market) {
 		      $items[$market->id] = $market->items()->orderBy('views', 'desc')->take(2)->get();			
 		}
@@ -39,7 +46,7 @@ class EnvironmentController extends Controller {
 		      }
 		}
 
-		return view('environment.home', compact('title', 'items', 'markets', 'users', 'loggedIn'));
+		return view('environment.home', compact('title', 'items', 'markets', 'users', 'loggedIn', 'userSubscriptions'));
 	}
 
 	public function getMarket($market)
@@ -50,6 +57,8 @@ class EnvironmentController extends Controller {
 
 		$detailMarket = Market::where('name', $market)->first();
 
+		$userSubscriptions = Subscriber::where('user_id', Auth::user()->id)->get();
+
 		$items = $detailMarket->items()->orderBy('views', 'desc')->get();
 
 		foreach ($items as $item) {
@@ -58,7 +67,7 @@ class EnvironmentController extends Controller {
 
 		$markets = $this->markets;
 
-		return view('environment.market', compact('title', 'items', 'detailMarket', 'markets', 'users', 'loggedIn'));
+		return view('environment.market', compact('title', 'items', 'detailMarket', 'markets', 'users', 'loggedIn', 'userSubscriptions'));
 	}
 
 	public function getItem($market, $item)
@@ -108,6 +117,31 @@ class EnvironmentController extends Controller {
 		
 
 		$market->save();
+
+		return back();
+	}
+
+	public function getMarketSubscribe($market)
+	{
+		$market = Market::where('name', $market)->first();
+
+		$user = Auth::user();
+
+		$subscriber = Subscriber::where(array('user_id' => $user->id, 'market_id' => $market->id))->first();
+
+		if ($subscriber != null) {
+
+			$subscriber->delete();
+
+		} else {
+
+			$subscriber = new Subscriber;
+
+			$subscriber->user()->associate($user);
+			$subscriber->market()->associate($market);
+
+			$subscriber->save();
+		}
 
 		return back();
 	}

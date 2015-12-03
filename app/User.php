@@ -40,11 +40,6 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $hidden = ['password', 'remember_token'];
 
-    public function markets() 
-    {
-        return $this->belongsToMany('App\Market');
-    }
-
 	public function items()
 	{
 		return $this->hasMany('App\Item','user_id','id');
@@ -53,5 +48,15 @@ class User extends Model implements AuthenticatableContract,
     public function marketVotes()
     {
         return $this->hasMany('App\MarketVote','user_id','id');
+    }
+
+    public function subscribers()
+    {
+        return $this->hasMany('App\Subscriber','user_id','id');
+    }
+
+    public function managers()
+    {
+        return $this->hasMany('App\Manager','user_id','id');
     }
 }

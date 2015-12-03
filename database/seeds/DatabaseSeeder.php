@@ -298,13 +298,6 @@ class MarketplacesAppSeeder extends Seeder {
 	    'item_id' => $armaniTable->id
 	]);
 
-
-	$bikes->users()->attach($oscar->id, array('subscription' => 1, 'management' => 1));
-	$cars->users()->attach($udo->id, array('subscription' => 1, 'management' => 1));
-	$retro->users()->attach($oscar->id, array('subscription' => 1, 'management' => 0));
-	$design->users()->attach($oscar->id, array('subscription' => 1, 'management' => 1));
-	$fruit->users()->attach($udo->id, array('subscription' => 1, 'management' => 0));
-
 	$trek->markets()->attach($bikes->id);
 	$ferrari->markets()->attach($cars->id);
 	$saddle->markets()->attach($bikes->id);
